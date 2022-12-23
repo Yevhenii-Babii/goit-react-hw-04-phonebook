@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types';
+import { ListUl,BtnDelete } from './List.styled';
 export const List = ({ contacts, deleteForm }) => {
   return (
-    <ul>
+    <>
+    <h2>Contacts</h2>
+    <ListUl>
       {contacts.map(({ id, name, number }) => {
         return (
           <li key={id}>
             {' '}
-            {name}:{number}
-            <button onClick={() => deleteForm(id)}> Delete </button>
+            {name}: {number}
+            <BtnDelete onClick={() => deleteForm(id)}> Delete </BtnDelete>
           </li>
         );
       })}
-    </ul>
+    </ListUl>
+    </>
   );
 };
 

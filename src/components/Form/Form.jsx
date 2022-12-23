@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormStyle,BtnAddContact,LabelName,InputForm } from './Form.styled';
 // import { nanoid } from 'nanoid'
 
 export class Form extends React.Component {
@@ -29,11 +30,13 @@ export class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.addContact}>
-        <label htmlFor="">
+        <>
+        <h2>Phonebook</h2>
+      <FormStyle onSubmit={this.addContact}>
+        <LabelName htmlFor="">
           {' '}
           Name
-          <input
+          <InputForm
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -42,11 +45,11 @@ export class Form extends React.Component {
             value={this.state.name}
             onChange={this.onInputText}
           />
-        </label>
-        <label htmlFor="">
+        </LabelName>
+        <LabelName htmlFor="">
           {' '}
           Number
-          <input
+          <InputForm
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -55,10 +58,11 @@ export class Form extends React.Component {
             value={this.state.number}
             onChange={this.onInputText}
           />
-        </label>
+        </LabelName>
 
-        <button type="submit">Add contact</button>
-      </form>
+        <BtnAddContact type="submit">Add contact</BtnAddContact>
+      </FormStyle>
+      </>
     );
   }
 }
