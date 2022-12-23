@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export const Filter = ({ filter, onFilterChange }) => {
   return (
     <>
@@ -6,3 +7,10 @@ export const Filter = ({ filter, onFilterChange }) => {
     </>
   );
 };
+
+Filter.prototype = {
+    onFilterChange: PropTypes.func.isRequired,
+    filter: PropTypes.arrayOf(
+        
+    )
+}
