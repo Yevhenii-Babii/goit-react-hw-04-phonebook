@@ -13,6 +13,18 @@ export class App extends Component {
     ],
     filter: '',
   };
+  componentDidMount() {
+    const allContacts = JSON.parse(localStorage.getItem('newContact'));
+    if (allContacts) {
+      this.setState({ contacts: allContacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('newContact', JSON.stringify(this.state.contacts));
+    }
+  }
 
   formSubmit = data => {
     const newUser = {
