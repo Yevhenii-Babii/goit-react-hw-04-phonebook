@@ -1,68 +1,68 @@
 import React from 'react';
 import { FormStyle,BtnAddContact,LabelName,InputForm } from './Form.styled';
 // import { nanoid } from 'nanoid'
+import { useState } from 'react';
 
-export class Form extends React.Component {
-  state = {
-    name: '',
-    number: '',
+
+export function Form({onSubmit}) {
+  const [name, setName] = useState('');
+  const [number,setNumber] = useState('')
+
+ const onInputText = event => {
+ switch(event.target.name) {
+  case 'name' :
+  setName (event.target.value)
+  break;
+
+  case 'number':
+  setNumber(event.target.value)
+  break;
+ }
   };
 
-  onInputText = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  addContact = event => {
+  const addContact = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
-    this.reset();
+    onSubmit({name,number});
+    setName('')
+    setNumber('')
   };
+  return (
+    <>
+    <h2>Phonebook</h2>
+  <FormStyle onSubmit={addContact}>
+    <LabelName htmlFor="">
+     
+      Name
+      <InputForm
+        type="text"
+        name="name"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        required
+        value={name}
+        onChange={onInputText}
+      />
+    </LabelName>
+    <LabelName htmlFor="">
+     
+      Number
+      <InputForm
+        type="tel"
+        name="number"
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        required
+        value={number}
+        onChange={onInputText}
+      />
+    </LabelName>
 
-  reset = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
+    <BtnAddContact type="submit">Add contact</BtnAddContact>
+  </FormStyle>
+  </>
 
-  render() {
-    return (
-        <>
-        <h2>Phonebook</h2>
-      <FormStyle onSubmit={this.addContact}>
-        <LabelName htmlFor="">
-          {' '}
-          Name
-          <InputForm
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={this.state.name}
-            onChange={this.onInputText}
-          />
-        </LabelName>
-        <LabelName htmlFor="">
-          {' '}
-          Number
-          <InputForm
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            value={this.state.number}
-            onChange={this.onInputText}
-          />
-        </LabelName>
-
-        <BtnAddContact type="submit">Add contact</BtnAddContact>
-      </FormStyle>
-      </>
-    );
-  }
+  )
 }
+
+
+
