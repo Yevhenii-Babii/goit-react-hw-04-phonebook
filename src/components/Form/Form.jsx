@@ -17,6 +17,9 @@ export function Form({onSubmit}) {
   case 'number':
   setNumber(event.target.value)
   break;
+  
+  default: 
+  break;
  }
   };
 
