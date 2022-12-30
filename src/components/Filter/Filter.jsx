@@ -9,8 +9,6 @@ export const Filter = ({ filter, onFilterChange }) => {
 };
 
 Filter.prototype = {
-    onFilterChange: PropTypes.func.isRequired,
-    filter: PropTypes.arrayOf(
-        
-    )
-}
+  onFilterChange: PropTypes.func.isRequired,
+  filter: PropTypes.arrayOf(),
+};

@@ -8,7 +8,6 @@ export const List = ({ contacts, deleteForm }) => {
       {contacts.map(({ id, name, number }) => {
         return (
           <li key={id}>
-            {' '}
             {name}: {number}
             <BtnDelete onClick={() => deleteForm(id)}> Delete </BtnDelete>
           </li>
